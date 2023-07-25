@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación para ver Blue betle</title>
+  <link rel="icon" href="2.webp" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 50px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    .container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px 10px 10px 10px; /* Para que la imagen tenga bordes redondeados solo en la parte superior */
+      margin-top: 300px;
+    }
+
+    h1 {
+      color: #0000ff; /* Changed from #ff69b4 (pink) to #0000ff (blue) */
+      text-align: center; /* Centrar el texto horizontalmente */
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #0000ff; /* Changed from #ff69b4 (pink) to #0000ff (blue) */
+      color: #ffffff;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .centered {
+      display: block;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+
+    .error-message,
+    .love-message {
+      font-size: 24px;
+      color: #0000ff; /* Changed from #ff69b4 (pink) to #0000ff (blue) */
+      display: none;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button class="btn" onclick="abrirTarjeta()">¡Ábreme!</button>
+
+  <div class="container" id="tarjeta">
+    <img src="1.jpg" alt="Imagen de Barbie">
+    <h1>Invitación para ir a ver</h1>
+    <h1>Blue Beetle</h1>
+    <p>Blue Beetle 18 de agosto solo en cines,</p>
+    <p>Blue Beetle 18 de agosto solo en cines</p>
+    <p>Fecha: Blue Beetle 18 de agosto solo en cines</p>
+    <p>Hora: Blue Beetle 18 de agosto solo en cines</p>
+    <p>Lugar: Blue Beetle 18 de agosto solo en cines</p>
+    <p>Si no vienes te gustan los tipos</p>
+    <p>Blue Beetle 18 de agosto solo en cines,</p>
+    <p>Blue Beetle 18 de agosto solo en cines</p>
+    <p>Elige alguna respuesta usando los botones abajo Blue Beetle 18 de agosto solo en cines</p>
+
+    <!-- Aquí movemos los botones de "Sí" y "No" al final -->
+    <div id="botonNo" class="centered hidden">
+      
+      <a class="btn"  onclick="mostrarError()" href="https://www.youtube.com/watch?v=vS3_72Gb-bI&ab_channel=DC">NO</a>
+    </div>
+    <div id="botonSi" class="centered hidden">
+      <a href="" class="btn" onclick="mostrarAmor()">SI</a>
+    </div>
+
+    <div id="error" class="error-message hidden">Lo siento, pero no puedo aceptar un no por respuesta. Por favor, elige "Sí".</div>
+    <div id="amor"  class="love-message hidden">⭐❤️⭐❤️⭐❤️⭐❤️⭐<br><br>❤️Blue Beetle 18 de agosto solo en cines❤️<br>Alli te espero :3</div>
+  </div>
+
+  <script>
+    function abrirTarjeta() {
+      const botonAbrir = document.querySelector(".btn");
+      botonAbrir.style.display = "none";
+
+      const tarjeta = document.getElementById("tarjeta");
+      tarjeta.style.display = "block"; // Mostrar la tarjeta
+
+      // Añadir una animación de apertura a la tarjeta
+      tarjeta.animate(
+        [
+          { transform: "scale(0)", opacity: 0 },
+          { transform: "scale(1)", opacity: 1 }
+        ],
+        {
+          duration: 1000,
+          easing: "ease-out"
+        }
+      );
+
+      const botonNo = document.getElementById("botonNo");
+      const botonSi = document.getElementById("botonSi");
+      botonNo.style.display = "flex"; // Mostrar el botón "No" (como flexbox)
+      botonSi.style.display = "flex"; // Mostrar el botón "Sí" (como flexbox)
+
+      // Ocultar mensajes anteriores al abrir la tarjeta nuevamente
+      const error = document.getElementById("error");
+      error.style.display = "none";
+      const amor = document.getElementById("amor");
+      amor.style.display = "none";
+    }
+
+    function mostrarError() {
+      const error = document.getElementById("error");
+      error.style.display = "block";
+
+      // Ocultar mensaje de amor si se elige "No"
+      const amor = document.getElementById("amor");
+      amor.style.display = "none";
+    }
+
+    function mostrarAmor() {
+      const amor = document.getElementById("amor");
+      amor.style.display = "block";
+
+      // Ocultar mensaje de error si se elige "Sí"
+      const error = document.getElementById("error");
+      error.style.display = "none";
+
+      // Crear estrellitas y corazones y animarlos por toda la pantalla
+      const particles = ["⭐", "❤️"];
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement("span");
+        particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+        particle.style.position = "absolute";
+        particle.style.color = "#0000ff"; // Changed from #ff69b4 (pink) to #0000ff (blue)
+        particle.style.left = `${Math.random() * 100}vw`;
+
+
+        particle.style.top = `${Math.random() * 100}vh`;
+        particle.style.fontSize = `${Math.random() * 20 + 10}px`;
+        document.body.appendChild(particle);
+
+        particle.animate(
+          [
+            { transform: "translate(0, 0) scale(1)", opacity: 1 },
+            { transform: `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(${Math.random() * 2})`, opacity: 0 }
+          ],
+          {
+            duration: 2000,
+            easing: "ease-out",
+            fill: "forwards"
+          }
+        ).onfinish = () => {
+          particle.remove();
+        };
+      }
+    }
+  </script>
+</body>
+</html>
